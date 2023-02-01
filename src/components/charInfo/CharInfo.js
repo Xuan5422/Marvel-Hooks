@@ -84,7 +84,7 @@ const View = ({ char }) => {
     if ({ ...comics }.available) {
         comicsList = { ...comics }.items.map((item, i) => {
             return (
-                <a key={i} className="char__comics-item" href={item.resourceURI}> {item.name}</a>
+                <div key={i} className="char__comics-item" href={item.resourceURI}> {item.name}</div>
             )
         })
     } else comicsList = "There are no comisc for this character.";
