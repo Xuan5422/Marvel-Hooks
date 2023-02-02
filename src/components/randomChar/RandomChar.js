@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import ErrorMessage from '../errorMessage/errorMesage';
 import Spiner from '../spiner/Spiner';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import './randomChar.scss';
 
 import mjolnir from '../../resources/img/mjolnir.png';
@@ -10,50 +10,25 @@ import mjolnir from '../../resources/img/mjolnir.png';
 const RandomChar = () => {
 
     const [Char, setChar] = useState({});
-    const [Loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-     const marvelService = new MarvelService();
+    const {loading, error, getCharacter} = useMarvelService();
 
     useEffect(() => {
         updateChar()
     }, [] );
 
 
-    const onError = () => {
-
-        setLoading(Loading => false);
-        setError(error => true);
-
-    }
-
-    const offError = () => {
-        setError(error => false);
-    }
-
-    const turnONspiner = () => {
-        setLoading(Loading => true);
-
-    }
-
     const updateChar = () => {
-        turnONspiner();
-        offError();
         const id = Math.floor(Math.random() * (1011400 - 1009207) + 1009207);
 
-        marvelService
-            .getCharacter(id)
+        getCharacter(id)
             .then(resp => {
                 setChar(Char => resp);
-                setLoading(Loading => false);
-                setError(error => false);
             })
-            .catch(onError);
     }
 
     const errorMesage = error ? <ErrorMessage /> : null;
-    const spiner = Loading ? <Spiner /> : null;
-    const content = !(Loading || error) ? <View char={Char} /> : null;
+    const spiner = loading ? <Spiner /> : null;
+    const content = !(loading || error) ? <View char={Char} /> : null;
 
     return (
         <div className="randomchar">

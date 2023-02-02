@@ -22,13 +22,13 @@ const App = () => {
             <AppHeader />
             <main>
                 <RandomChar />
-                <div className="char__content">
+            {/*     <div className="char__content">
                     <CharList currCharId={currCharId} />
                     <ErrorBoundary>
                         <CharInfo currChar={currentChar} />
                     </ErrorBoundary>
 
-                </div>
+                </div> */}
                 <img className="bg-decoration" src={decoration} alt="vision" />
             </main>
         </div>
