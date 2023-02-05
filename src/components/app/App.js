@@ -23,19 +23,19 @@ const App = () => {
         <div className="app">
             <AppHeader />
             <main>
-                {/* <ErrorBoundary>
+                <ErrorBoundary>
                     <RandomChar />
                 </ErrorBoundary>
                 <div className="char__content">
                     <CharList currCharId={currCharId} />
-                    <ErrorBoundary>
+                    {/* <ErrorBoundary>
                         <CharInfo currChar={currentChar} />
-                    </ErrorBoundary>
+                    </ErrorBoundary> */}
 
                 </div>
-                <img className="bg-decoration" src={decoration} alt="vision" /> */}
-                <AppBanner/>
-                <ComicsList/>
+                <img className="bg-decoration" src={decoration} alt="vision" />
+{/*                 <AppBanner/>
+                <ComicsList/> */}
             </main>
         </div>
     )
