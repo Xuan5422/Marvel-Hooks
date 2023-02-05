@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import './charInfo.scss';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import Skeleton from '../skeleton/Skeleton';
 import ErroeMessage from '../errorMessage/errorMesage.js';
 import Spiner from '../spiner/Spiner';
@@ -9,10 +9,8 @@ import Spiner from '../spiner/Spiner';
 const CharInfo = (props) => {
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
 
-    const marvelService = new MarvelService();
+    const {loading, error, getCharacter, clearError} = useMarvelService();
 
     useEffect(() => {
         updateChar(props.currChar)
@@ -22,36 +20,16 @@ const CharInfo = (props) => {
         if (this.props.currChar !== prevProps.currChar) this.updateChar(this.props.currChar)
     } */
 
-    const onError = () => {
-        setLoading(false);
-        setError(true);
-    }
-
-    const offError = () => {
-        setError(false)   
-    }
-
-    const turnONspiner =() => {
-        setLoading(true);
-        setError(false);
-    }
 
     const updateChar = (id) => {
        // console.log(id);
         if (!id) return;
-        turnONspiner();
-        offError();
 
-        marvelService
-            .getCharacter(id)
+        getCharacter(id)
             .then(resp => {
                 setChar(char => resp);
-                setLoading(Loading => false);
-                setError(error => false);
-            })
-            .catch(onError);
 
-        //           this.foo.bar = 0;
+            })
     }
 
         const { currChar } = props;
