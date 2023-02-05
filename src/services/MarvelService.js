@@ -17,39 +17,44 @@ const useMarvelService = () => {
         return res.json();
     } */
 
-    const getAllCharacters = async (offset) => {
+    
+        const getAllCharacters = async (offset) => {
         
-        const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
-        return res.data.results.map(item => {
-                return {
-                    id: item.id,
-                    name: item.name,
-                    description: item.description,
-                    thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
-                    homepage: item.urls[0].url,
-                    wiki: item.urls[1].url,
-                }
-            });
-
-    }
-
-    const getCharacter = async (id) => {
-        const resp = await request(`${_apiBase}characters/${id}?${_apiKey}`);
-        return _transformCharacter(resp)
-    }
-
-    const _transformCharacter = (resp) => {
-
-        return {
-            name: resp.data.results[0].name,
-            description: resp.data.results[0].description,
-            thumbnail: resp.data.results[0].thumbnail.path + '.' + resp.data.results[0].thumbnail.extension,
-            homepage: resp.data.results[0].urls[0].url,
-            wiki: resp.data.results[0].urls[1].url,
-            comics: resp.data.results[0].comics,
+            const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
+            return res.data.results.map(item => {
+                    return {
+                        id: item.id,
+                        name: item.name,
+                        description: item.description,
+                        thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
+                        homepage: item.urls[0].url,
+                        wiki: item.urls[1].url,
+                    }
+                });
+    
         }
-    }
-    return {loading, error, getCharacter, getAllCharacters}
+    
+        const getCharacter = async (id) => {
+            const resp = await request(`${_apiBase}characters/${id}?${_apiKey}`);
+            return _transformCharacter(resp)
+        }
+    
+        const _transformCharacter = (resp) => {
+    
+            return {
+                name: resp.data.results[0].name,
+                description: resp.data.results[0].description,
+                thumbnail: resp.data.results[0].thumbnail.path + '.' + resp.data.results[0].thumbnail.extension,
+                homepage: resp.data.results[0].urls[0].url,
+                wiki: resp.data.results[0].urls[1].url,
+                comics: resp.data.results[0].comics,
+            }
+        }
+    
+
+
+    
+    return {loading, error, getCharacter, getAllCharacters, clearError}
 }
 
 export default useMarvelService;

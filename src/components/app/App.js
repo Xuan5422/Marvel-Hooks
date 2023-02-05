@@ -21,14 +21,16 @@ const App = () => {
         <div className="app">
             <AppHeader />
             <main>
-                <RandomChar />
-            {/*     <div className="char__content">
+                <ErrorBoundary>
+                    <RandomChar />
+                </ErrorBoundary>
+                <div className="char__content">
                     <CharList currCharId={currCharId} />
-                    <ErrorBoundary>
+                    {/* <ErrorBoundary>
                         <CharInfo currChar={currentChar} />
-                    </ErrorBoundary>
+                    </ErrorBoundary> */}
 
-                </div> */}
+                </div>
                 <img className="bg-decoration" src={decoration} alt="vision" />
             </main>
         </div>
