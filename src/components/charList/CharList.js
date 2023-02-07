@@ -9,8 +9,6 @@ import './charList.scss';
 const CharList = (props) => {
 
 
-    // const arrClass = [];
-
     const [offset, setOffset] = useState(0);
     const [charLst, setCharLst] = useState([]);
 
