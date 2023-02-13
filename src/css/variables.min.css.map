@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../style/variables.scss"
-    ],
-    "names": [],
-    "file": "variables.min.css"
-}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"variables.min.css"}

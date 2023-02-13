@@ -15,7 +15,6 @@ const CharList = (props) => {
     const { getAllCharacters } = useMarvelService()
 
      useEffect(() => {
-        console.log('*******useEffect******');
         updateCharList()
     }, []);
  

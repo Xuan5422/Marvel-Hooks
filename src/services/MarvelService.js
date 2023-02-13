@@ -8,6 +8,9 @@ const useMarvelService = () => {
 
     const _apiKey = 'apikey=60670b5407686b2a4a3a9be0bdf27976';
 
+
+
+
 /*     getResource = async (url) => {
         let res = await fetch(url);
 
@@ -16,10 +19,21 @@ const useMarvelService = () => {
         }
         return res.json();
     } */
-
+        const getAllComics = async (offset) => {
+            const res = await request(`${_apiBase}comics?orderBy=title&limit=8&offset=${offset}&${_apiKey}`);
+            return res.data.results.map(item => {
+                return {
+                    id: item.id,
+                    name: item.title,
+                    thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
+                    url: item.resourceURI,
+                    price: item.prices[0].price
+                }
+            });
+        }
     
         const getAllCharacters = async (offset) => {
-        
+            
             const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`);
             return res.data.results.map(item => {
                     return {
@@ -54,7 +68,7 @@ const useMarvelService = () => {
 
 
     
-    return {loading, error, getCharacter, getAllCharacters, clearError}
+    return {loading, error, getCharacter, getAllCharacters, getAllComics, clearError}
 }
 
 export default useMarvelService;
