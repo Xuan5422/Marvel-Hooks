@@ -11,7 +11,7 @@ const ComicsList = () => {
     const [comicsLst, setComicsLst] = useState([]);
     const [offset, setOffset] = useState(0);
 
-    const { getAllComics } = useMarvelService;
+    const { getAllComics } = useMarvelService();
 
     useEffect(() => {
         updateCsLst()

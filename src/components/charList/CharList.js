@@ -12,7 +12,7 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(0);
     const [charLst, setCharLst] = useState([]);
 
-    const { getAllCharacters } = useMarvelService()
+    const { getAllCharacters } = useMarvelService();
 
      useEffect(() => {
         updateCharList()
