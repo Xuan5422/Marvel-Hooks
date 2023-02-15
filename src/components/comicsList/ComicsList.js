@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useMarvelService from '../../services/MarvelService';
-
+import Spiner from '../spiner/Spiner';
 import './comicsList.scss';
 //import uw from '../../resources/img/UW.png';
 //import xMen from '../../resources/img/x-men.png';
@@ -11,7 +11,7 @@ const ComicsList = () => {
     const [comicsLst, setComicsLst] = useState([]);
     const [offset, setOffset] = useState(0);
 
-    const { getAllComics } = useMarvelService();
+    const { loading, getAllComics } = useMarvelService();
 
     useEffect(() => {
         updateCsLst()
@@ -38,15 +38,20 @@ const ComicsList = () => {
             </li>
         )
     })
+    const btn = (<button className="button button__main button__long" onClick={updateCsLst}>
+                    <div className="inner">load more</div>
+                </button>);
+    
+    const endElement = loading ? <Spiner /> : btn;
 
     return (
         <div className="comics__list">
             <ul className="comics__grid">
                 {visCsLst}
             </ul>
-            <button className="button button__main button__long" onClick={updateCsLst}>
-                <div className="inner">load more</div>
-            </button>
+
+            {endElement}
+
         </div>
     )
 }
