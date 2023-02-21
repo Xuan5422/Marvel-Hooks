@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
@@ -20,24 +21,32 @@ const App = () => {
 
 
     return (
-        <div className="app">
-            <AppHeader />
-            <main>
-               {/*  <ErrorBoundary>
-                    <RandomChar />
-                </ErrorBoundary>
-                <div className="char__content">
-                    <CharList currCharId={currCharId} />
-                    <ErrorBoundary>
-                        <CharInfo currChar={currentChar} />
-                    </ErrorBoundary>
+        <Router>
+            {<div className="app">
+                <AppHeader />
+                <main>
+                    <Switch>
+                        <Route exact path="/">
+                            <ErrorBoundary>
+                                <RandomChar />
+                            </ErrorBoundary>
+                            <div className="char__content">
+                                <CharList currCharId={currCharId} />
+                                <ErrorBoundary>
+                                    <CharInfo currChar={currentChar} />
+                                </ErrorBoundary>
 
-                </div>
-                <img className="bg-decoration" src={decoration} alt="vision" /> */}
-                <AppBanner/>
-                <ComicsList/>
-            </main>
-        </div>
+                            </div>
+                            <img className="bg-decoration" src={decoration} alt="vision" />
+                        </Route>
+                        <Route exact path="/comics">
+                            <AppBanner />
+                            <ComicsList />
+                        </Route>
+                    </Switch>
+                </main>
+            </div>}
+        </Router>
     )
 
 
