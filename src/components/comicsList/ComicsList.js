@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import useMarvelService from '../../services/MarvelService';
 import Spiner from '../spiner/Spiner';
+import {Link} from 'react-router-dom';
 import './comicsList.scss';
-//import uw from '../../resources/img/UW.png';
-//import xMen from '../../resources/img/x-men.png';
 
 
 const ComicsList = () => {
@@ -30,11 +29,11 @@ const ComicsList = () => {
     const visCsLst = comicsLst.map((item, i) => {
         return (
             <li tabIndex="0" key={i} className="comics__item">
-                <a href={{ ...item }.url}>
-                    <img src={{ ...item }.thumbnail} alt={{ ...item }.name} className="comics__item-img" />
-                    <div className="comics__item-name">{{ ...item }.name}</div>
-                    <div className="comics__item-price">{{ ...item }.price}</div>
-                </a>
+                <Link to={`comics/${item.id}`}>
+                    <img src={item .thumbnail} alt={{ ...item }.name} className="comics__item-img" />
+                    <div className="comics__item-name">{item.name}</div>
+                    <div className="comics__item-price">{item.price}</div>
+                </Link>
             </li>
         )
     })
