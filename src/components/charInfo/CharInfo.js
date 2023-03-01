@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 
 import './charInfo.scss';
 import useMarvelService from '../../services/MarvelService';
@@ -20,7 +21,7 @@ const CharInfo = (props) => {
         if (this.props.currChar !== prevProps.currChar) this.updateChar(this.props.currChar)
     } */
 
-
+    
     const updateChar = (id) => {
        // console.log(id);
         if (!id) return;
@@ -61,8 +62,17 @@ const View = ({ char }) => {
 
     if ({ ...comics }.available) {
         comicsList = { ...comics }.items.map((item, i) => {
+
+            const arr = item.resourceURI.split('/');
+            //console.log(arr[arr.length-1]);
+
             return (
-                <div key={i} className="char__comics-item" href={item.resourceURI}> {item.name}</div>
+                <div key={i} className="char__comics-item">
+                    <Link to={`comics/${arr[arr.length-1]}`} > 
+                        {item.name}
+                    </Link>
+                </div>
+                
             )
         })
     } else comicsList = "There are no comisc for this character.";

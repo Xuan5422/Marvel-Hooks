@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 //import { useHttp } from '../../hooks/http.hook';
 import useMarvelService from '../../services/MarvelService';
+import Spiner from '../spiner/Spiner';
 import './charList.scss';
 //import abyss from '../../resources/img/abyss.jpg';
 
@@ -12,7 +13,7 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(0);
     const [charLst, setCharLst] = useState([]);
 
-    const { getAllCharacters } = useMarvelService();
+    const { loading, getAllCharacters } = useMarvelService();
 
      useEffect(() => {
         updateCharList()
@@ -45,6 +46,12 @@ const CharList = (props) => {
 
     })
 
+    const btn = (<button className="button button__main button__long" onClick={updateCharList}>
+                    <div className="inner">load more</div>
+                </button>);
+    
+    const endElement = loading ? <Spiner /> : btn;
+
     return (
         <div className="char__list">
             <ul className="char__grid">
@@ -52,9 +59,7 @@ const CharList = (props) => {
                 {visCharList}
 
             </ul>
-            <button className="button button__main button__long" onClick={updateCharList}>
-                <div className="inner">load more</div>
-            </button>
+            {endElement}
         </div>
     )
 }
