@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 //import { useHttp } from '../../hooks/http.hook';
 import useMarvelService from '../../services/MarvelService';
 import Spiner from '../spiner/Spiner';
@@ -34,7 +34,7 @@ const CharList = (props) => {
         const { currCharId } = props;
         currCharId({ ...charLst[e.currentTarget.id] }.id)
 
-    }
+    };
 
     const visCharList = charLst.map((item, i) => {
         return (
