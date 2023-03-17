@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 import './charInfo.scss';
 import useMarvelService from '../../services/MarvelService';
@@ -11,19 +12,19 @@ const CharInfo = (props) => {
 
     const [char, setChar] = useState({});
 
-    const {loading, error, getCharacter, clearError} = useMarvelService();
+    const { loading, error, getCharacter, clearError } = useMarvelService();
 
     useEffect(() => {
         updateChar(props.currChar)
     }, [props.currChar]);
 
- /*    componentDidUpdate(prevProps, prevState) {
-        if (this.props.currChar !== prevProps.currChar) this.updateChar(this.props.currChar)
-    } */
+    /*    componentDidUpdate(prevProps, prevState) {
+           if (this.props.currChar !== prevProps.currChar) this.updateChar(this.props.currChar)
+       } */
 
-    
+
     const updateChar = (id) => {
-       // console.log(id);
+        // console.log(id);
         if (!id) return;
 
         getCharacter(id)
@@ -33,26 +34,27 @@ const CharInfo = (props) => {
             })
     }
 
-        const { currChar } = props;
+    const { currChar } = props;
 
-        const content = !(loading || error) && currChar ? <View char={char} /> : null;
-        const spiner = loading ? <Spiner /> : null;
-        const errorMesage = error ? <ErroeMessage /> : null;
-        const skeleton = currChar ? null : <Skeleton />
+    const content = !(loading || error) && currChar ? <View char={char} /> : null;
+    const spiner = loading ? <Spiner /> : null;
+    const errorMesage = error ? <ErroeMessage /> : null;
+    const skeleton = currChar ? null : <Skeleton />
 
-        return (
-            <div className="char__info">
-                {errorMesage}
-                {spiner}
-                {skeleton}
-                {content}
-            </div>
-        )
-    
+    return (
+        <div className="char__info">
+            {errorMesage}
+            {spiner}
+            {skeleton}
+            {content}
+        </div>
+    )
+
 }
 
 
 const View = ({ char }) => {
+    const duration = 500;
     const { name, description, thumbnail, homepage, wiki, comics } = char;
     const descr = description ? description : "There is no description for this character.";
     let imgStyle = { 'objectFit': 'cover' };
@@ -68,41 +70,44 @@ const View = ({ char }) => {
 
             return (
                 <div key={i} className="char__comics-item">
-                    <Link to={`comics/${arr[arr.length-1]}`} > 
+                    <Link to={`comics/${arr[arr.length - 1]}`} >
                         {item.name}
                     </Link>
                 </div>
-                
+
             )
         })
     } else comicsList = "There are no comisc for this character.";
 
 
     return (
-        <div>
-            <div className="char__basics">
-                <img src={thumbnail} alt={name} style={imgStyle} />
-                <div>
-                    <div className="char__info-name">{name}</div>
-                    <div className="char__btns">
-                        <a href={homepage} className="button button__main">
-                            <div className="inner">homepage</div>
-                        </a>
-                        <a href={wiki} className="button button__secondary">
-                            <div className="inner">Wiki</div>
-                        </a>
+        <CSSTransition in={name} timeout={duration} classNames="infochar">
+            <div>
+                <div className="char__basics">
+                    <img src={thumbnail} alt={name} style={imgStyle} />
+                    <div>
+                        <div className="char__info-name">{name}</div>
+                        <div className="char__btns">
+                            <a href={homepage} className="button button__main">
+                                <div className="inner">homepage</div>
+                            </a>
+                            <a href={wiki} className="button button__secondary">
+                                <div className="inner">Wiki</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <div className="char__descr">
+                    {descr}
+                </div>
+                <div className="char__comics">Comics:</div>
+                <ul className="char__comics-list">
+                    {comicsList}
+
+                </ul>
             </div>
-            <div className="char__descr">
-                {descr}
-            </div>
-            <div className="char__comics">Comics:</div>
-            <ul className="char__comics-list">
-                {comicsList}
-   
-            </ul>
-        </div>
+        </CSSTransition>
+
 
     )
 }

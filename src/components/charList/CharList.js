@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-//import { useHttp } from '../../hooks/http.hook';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useMarvelService from '../../services/MarvelService';
 import Spiner from '../spiner/Spiner';
 import './charList.scss';
@@ -9,18 +9,19 @@ import './charList.scss';
 
 const CharList = (props) => {
 
+    const duration = 500;
 
     const [offset, setOffset] = useState(0);
     const [charLst, setCharLst] = useState([]);
 
     const { loading, getAllCharacters } = useMarvelService();
 
-     useEffect(() => {
+    useEffect(() => {
         updateCharList()
     }, []);
- 
+
     const updateCharList = () => {
-        
+
         getAllCharacters(offset)
             .then((resp) => {
                 setCharLst(charLst => [...charLst, ...resp]);
@@ -38,29 +39,36 @@ const CharList = (props) => {
 
     const visCharList = charLst.map((item, i) => {
         return (
-            <li tabIndex="0" key={i} id={i} className="char__item" onFocus={onCharClick}>
-                <img src={{ ...item }.thumbnail} alt={{ ...item }.name} />
-                <div className="char__name">{{ ...item }.name}</div>
-            </li>
+            <CSSTransition key={i} timeout={duration} classNames="itemchar">
+                <li tabIndex="0" id={i} className="char__item" onFocus={onCharClick}>
+                    <img src={{ ...item }.thumbnail} alt={{ ...item }.name} />
+                    <div className="char__name">{{ ...item }.name}</div>
+                </li>
+            </CSSTransition>
+
         )
 
     })
 
     const btn = (<button className="button button__main button__long" onClick={updateCharList}>
-                    <div className="inner">load more</div>
-                </button>);
-    
+        <div className="inner">load more</div>
+    </button>);
+
     const endElement = loading ? <Spiner /> : btn;
 
     return (
+
         <div className="char__list">
-            <ul className="char__grid">
-
-                {visCharList}
-
-            </ul>
+                <ul>
+                    <TransitionGroup className="char__grid">
+                        {visCharList}
+                    </TransitionGroup>
+                    
+                </ul>
             {endElement}
         </div>
+
+
     )
 }
 
