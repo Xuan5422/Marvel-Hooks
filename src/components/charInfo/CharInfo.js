@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import './charInfo.scss';
 import useMarvelService from '../../services/MarvelService';
@@ -69,11 +69,14 @@ const View = ({ char }) => {
             //console.log(arr[arr.length-1]);
 
             return (
-                <div key={i} className="char__comics-item">
-                    <Link to={`comics/${arr[arr.length - 1]}`} >
-                        {item.name}
-                    </Link>
-                </div>
+                <CSSTransition key={i} timeout={duration} classNames="infochar">
+                    <div className="char__comics-item">
+                        <Link to={`comics/${arr[arr.length - 1]}`} >
+                            {item.name}
+                        </Link>
+                    </div>
+                </CSSTransition>
+
 
             )
         })
@@ -81,8 +84,9 @@ const View = ({ char }) => {
 
 
     return (
-        <CSSTransition in={name} timeout={duration} classNames="infochar">
-            <div>
+
+        <div>
+            <CSSTransition in={Boolean(name)} timeout={duration} classNames="infochar">
                 <div className="char__basics">
                     <img src={thumbnail} alt={name} style={imgStyle} />
                     <div>
@@ -97,16 +101,21 @@ const View = ({ char }) => {
                         </div>
                     </div>
                 </div>
-                <div className="char__descr">
-                    {descr}
-                </div>
-                <div className="char__comics">Comics:</div>
-                <ul className="char__comics-list">
-                    {comicsList}
-
-                </ul>
+            </CSSTransition>
+            <div className="char__descr">
+                {descr}
             </div>
-        </CSSTransition>
+            <div className="char__comics">Comics:</div>
+
+            <ul >
+                <TransitionGroup className="char__comics-list">
+                    {comicsList}
+                </TransitionGroup>
+
+
+            </ul>
+        </div>
+
 
 
     )
