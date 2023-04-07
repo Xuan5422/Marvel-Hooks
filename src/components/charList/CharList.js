@@ -39,7 +39,7 @@ const CharList = (props) => {
 
     const visCharList = charLst.map((item, i) => {
         return (
-            <CSSTransition key={i} timeout={duration} classNames="itemchar">
+            <CSSTransition key={i} timeout={duration} classNames="char">
                 <li tabIndex="0" id={i} className="char__item" onFocus={onCharClick}>
                     <img src={{ ...item }.thumbnail} alt={{ ...item }.name} />
                     <div className="char__name">{{ ...item }.name}</div>
