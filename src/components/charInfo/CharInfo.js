@@ -69,12 +69,12 @@ const View = ({ char }) => {
             //console.log(arr[arr.length-1]);
 
             return (
-                <CSSTransition key={i} timeout={duration} classNames="infochar">
-                    <div className="char__comics-item">
+                <CSSTransition key={i} timeout={duration} classNames="char">
+                    <li className="char__comics-item">
                         <Link to={`comics/${arr[arr.length - 1]}`} >
                             {item.name}
                         </Link>
-                    </div>
+                    </li>
                 </CSSTransition>
 
 
@@ -86,7 +86,7 @@ const View = ({ char }) => {
     return (
 
         <div>
-            <CSSTransition in={Boolean(name)} timeout={duration} classNames="infochar">
+            <CSSTransition in={Boolean(name)} timeout={duration} classNames="char">
                 <div className="char__basics">
                     <img src={thumbnail} alt={name} style={imgStyle} />
                     <div>

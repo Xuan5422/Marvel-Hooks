@@ -1,23 +1,6 @@
 @import "../../style/variables.scss";
 
-.infochar-enter {
-    transform: scale(0.5, 0.5);
-    opacity: 0;
-}
-.infochar-enter-active {
-    transform: scale(1, 1);
-    opacity: 1;
-    transition: all 500ms ease-in;
-}
-.infochar-exit {
-    transform: scale(1, 1);
-    opacity: 1;
-}
-.infochar-exit-active {
-    transform: scale(0.5, 0.5);
-    opacity: 0;
-    transition: all 500ms ease-in;
-}
+
 
 .char {
     &__info {
@@ -81,5 +64,24 @@
         font-size: 18px;
         line-height: 24px;
         text-align: center;
+    }
+
+    &-enter {
+        transform: scale(0.5, 0.5);
+        opacity: 0;
+    }
+    &-enter-active {
+        transform: scale(1, 1);
+        opacity: 1;
+        transition: all 500ms ease-in;
+    }
+    &-exit {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    &-exit-active {
+        transform: scale(0.5, 0.5);
+        opacity: 0;
+        transition: all 500ms ease-in;
     }
 }
