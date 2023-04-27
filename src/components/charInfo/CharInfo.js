@@ -57,7 +57,7 @@ const CharInfo = (props) => {
             </CSSTransition>
         </TransitionGroup>
             )
-
+ 
 }
 
 
