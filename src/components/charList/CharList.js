@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useMarvelService from '../../services/MarvelService';
 import Spiner from '../spiner/Spiner';

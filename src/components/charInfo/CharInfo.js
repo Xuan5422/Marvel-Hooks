@@ -9,7 +9,7 @@ import ErroeMessage from '../errorMessage/errorMesage.js';
 import Spiner from '../spiner/Spiner';
 
 const CharInfo = (props) => {
-
+    const duration = 500;
     const [char, setChar] = useState({});
 
     const { loading, error, getCharacter, clearError } = useMarvelService();
@@ -24,7 +24,7 @@ const CharInfo = (props) => {
 
 
     const updateChar = (id) => {
-        // console.log(id);
+
         if (!id) return;
 
         getCharacter(id)
@@ -35,24 +35,25 @@ const CharInfo = (props) => {
     }
 
     const { currChar } = props;
-    const nodref = [];
-    const {comics} = char;
-    if({...comics}.items) {
-        
-    }
+    //const nodref = useRef();
+
     const content = !(loading || error) && currChar ? <View char={char} /> : null;
     const spiner = loading ? <Spiner /> : null;
     const errorMesage = error ? <ErroeMessage /> : null;
     const skeleton = currChar ? null : <Skeleton />
 
-    return (
 
-        <div className="char__info">
-            {errorMesage}
-            {spiner}
-            {skeleton}
-            {content}
-        </div>
+    return (
+        <TransitionGroup component={null}>
+            <CSSTransition timeout={duration} unmountOnExit classNames="comic">
+                <div className="comic__info">
+                    {errorMesage}
+                    {spiner}
+                    {skeleton}
+                    {content}
+                </div>
+            </CSSTransition>
+        </TransitionGroup>
 
     )
 
@@ -60,13 +61,11 @@ const CharInfo = (props) => {
 
 
 const View = ({ char }) => {
-    const duration = 500;
+
     const { name, description, thumbnail, homepage, wiki, comics } = char;
     const descr = description ? description : "There is no description for this character.";
     let imgStyle = { 'objectFit': 'cover' };
     let comicsList;
-
-    console.dir({ ...comics }.items);
 
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') imgStyle = { 'objectFit': 'cover' };
 
@@ -74,31 +73,29 @@ const View = ({ char }) => {
         comicsList = { ...comics }.items.map((item, i) => {
 
             const arr = item.resourceURI.split('/');
-            //console.log(arr[arr.length-1]);
 
             return (
-                <CSSTransition key={i} timeout={duration} classNames="char__info">
-                    <li key={i} className="char__comics-item">
-                        <Link to={`comics/${arr[arr.length - 1]}`} >
-                            {item.name}
-                        </Link>
-                    </li>
-                </CSSTransition>
+
+                <li key={i} className="comic__comics-item">
+                    <Link to={`comics/${arr[arr.length - 1]}`} >
+                        {item.name}
+                    </Link>
+                </li>
+
 
             )
         })
     } else comicsList = "There are no comisc for this character.";
 
-
     return (
 
         <>
 
-            <div className="char__basics">
+            <div className="comic__basics">
                 <img src={thumbnail} alt={name} style={imgStyle} />
                 <div>
-                    <div className="char__info-name">{name}</div>
-                    <div className="char__btns">
+                    <div className="comic__info-name">{name}</div>
+                    <div className="comic__btns">
                         <a href={homepage} className="button button__main">
                             <div className="inner">homepage</div>
                         </a>
@@ -108,16 +105,17 @@ const View = ({ char }) => {
                     </div>
                 </div>
             </div>
-            <div className="char__descr">
+            <div className="comic__descr">
                 {descr}
             </div>
-            <div className="char__comics">Comics:</div>
+            <div className="comic__comics">Comics:</div>
 
-            <ul className="char__comics-list">
-                <TransitionGroup component={null}>
-                    {comicsList}
-                </TransitionGroup>
-            </ul>
+            <ul className="comic__comics-list" >
+
+                {comicsList}
+
+            </ul >
+
         </>
 
 
