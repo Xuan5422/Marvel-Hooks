@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -45,8 +45,8 @@ const CharInfo = (props) => {
 
     return (
         <TransitionGroup component={null}>
-            <CSSTransition timeout={duration} unmountOnExit classNames="comic">
-                <div className="comic__info">
+            <CSSTransition key={char?.id} timeout={duration} unmountOnExit classNames="char__info">
+                <div className="char__info">
                     {errorMesage}
                     {spiner}
                     {skeleton}
@@ -76,7 +76,7 @@ const View = ({ char }) => {
 
             return (
 
-                <li key={i} className="comic__comics-item">
+                <li key={i} className="char__comics-item">
                     <Link to={`comics/${arr[arr.length - 1]}`} >
                         {item.name}
                     </Link>
@@ -91,11 +91,11 @@ const View = ({ char }) => {
 
         <>
 
-            <div className="comic__basics">
+            <div className="char__basics">
                 <img src={thumbnail} alt={name} style={imgStyle} />
                 <div>
-                    <div className="comic__info-name">{name}</div>
-                    <div className="comic__btns">
+                    <div className="char__info-name">{name}</div>
+                    <div className="char__btns">
                         <a href={homepage} className="button button__main">
                             <div className="inner">homepage</div>
                         </a>
@@ -105,12 +105,12 @@ const View = ({ char }) => {
                     </div>
                 </div>
             </div>
-            <div className="comic__descr">
+            <div className="char__descr">
                 {descr}
             </div>
-            <div className="comic__comics">Comics:</div>
+            <div className="char__comics">Comics:</div>
 
-            <ul className="comic__comics-list" >
+            <ul className="char__comics-list" >
 
                 {comicsList}
 
