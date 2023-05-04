@@ -45,7 +45,7 @@ const CharInfo = (props) => {
 
     return (
         <TransitionGroup component={null}>
-            <CSSTransition key={char?.id} timeout={duration} unmountOnExit classNames="char__info">
+            <CSSTransition key={char?.id} timeout={duration} classNames="char__info">
                 <div className="char__info">
                     {errorMesage}
                     {spiner}
@@ -111,10 +111,8 @@ const View = ({ char }) => {
             <div className="char__comics">Comics:</div>
 
             <ul className="char__comics-list" >
-
                 {comicsList}
-
-            </ul >
+            </ul>
 
         </>
 
