@@ -3,7 +3,7 @@ import './errorMesage.scss';
 
 
 
-const ErroeMessage = () => {
+const ErrorMessage = () => {
 
     return (
         <div className="error-block">
@@ -15,4 +15,4 @@ const ErroeMessage = () => {
     )
 }
 
-export default ErroeMessage;
+export default ErrorMessage;

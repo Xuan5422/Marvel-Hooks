@@ -12,7 +12,6 @@ const MainPage = () => {
     const currCharId = (id) => {
         setCurrentChar(id)
     }
-
     return (
         <>
             <ErrorBoundary>
@@ -23,6 +22,7 @@ const MainPage = () => {
                     <CharList currCharId={currCharId} />
                 </ErrorBoundary>
                 <ErrorBoundary>
+
                     <CharInfo currChar={currentChar} />
                 </ErrorBoundary>
 

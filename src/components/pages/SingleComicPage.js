@@ -3,7 +3,7 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useMarvelService from '../../services/MarvelService';
 
-import ErrorMessage from '../errorMessage/errorMesage';
+import ErrorMessage from '../errorMessage/errorMessage';
 import Spiner from '../spiner/Spiner1';
 
 import './SingleComicPage.scss';
