@@ -96,7 +96,7 @@ const View = ({ char }) => {
                         const arr = item.resourceURI.split('/');
                         return (
                             <li key={i} className="char__comics-item">
-                                <Link to={`comics/${arr[arr.length - 1]}`} >
+                                <Link to={`/comics/${arr[arr.length - 1]}`} >
                                     {item.name}
                                 </Link>
                             </li>

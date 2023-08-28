@@ -33,7 +33,7 @@ const SingleComicPage = () => {
     const errorMesage = error ? <ErrorMessage /> : null;
     const spiner = loading ? <Spiner /> : null;
     const content = !(loading || error) ? <View comic={comic} /> : null;
-
+    console.log('Single***', comicId );
     return (
         <>
             {errorMesage}
