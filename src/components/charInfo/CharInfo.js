@@ -18,8 +18,10 @@ const CharInfo = (props) => {
 
     useEffect(() => {
         updateChar()
-    }, [props.currChar])
-    console.log(props.currChar);
+    }, [props.currChar]);
+
+    //console.log(props.currChar);
+
     const updateChar = () => {
 
         const { currChar } = props;

@@ -1,18 +1,22 @@
-/*import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import useMarvelService from '../../services/MarvelService';
 import Spiner from '../spiner/Spiner';
-import ErrorMessage from '../errorMessage/errorMessage';
-import Skeleton from '../skeleton/Skeleton';
+//import ErrorMessage from '../errorMessage/errorMessage';
+//import Skeleton from '../skeleton/Skeleton';
 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-//import './charInfo.scss';
+import './charSearch.scss';
 
 const CharSearch = (props) => {
 
- <View />
+    return (
+        <div className="search-pan">
+
+        </div>
+    )
 
 }
 
@@ -30,4 +34,4 @@ const View = () => {
 }
 
 
-export default CharInfo; */
+export default CharSearch;
