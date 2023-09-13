@@ -7,6 +7,8 @@ import Spiner from '../spiner/Spiner';
 //import Skeleton from '../skeleton/Skeleton';
 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from 'yup';
 
 import './charSearch.scss';
 
@@ -14,6 +16,9 @@ const CharSearch = (props) => {
 
     return (
         <div className="search-pan">
+            <form action="">
+                
+            </form>
 
         </div>
     )
