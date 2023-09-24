@@ -15,28 +15,28 @@ import './charSearch.scss';
 const CharSearch = (props) => {
 
     return (
-        <div className="search-pan">
-            <form action="">
-                
-            </form>
-
-        </div>
+        <Formik
+            initialValues={{
+                name: '',
+            }}
+            validationSchema={Yup.object({
+                name: Yup.string()
+                    .min(3, 'Минимум 3 символа!')
+                //      .required('Обязательное поле!')
+            })
+            }
+        >
+            <Form className="search-pan" action="">
+                <Field
+                    id="name"
+                    name="name"
+                    type="text"
+                />
+                <ErrorMessage className="error" name="name" component="div" />
+            </Form>
+        </Formik>
     )
 
 }
-
-const View = () => {
-
-    
-    return (
-        <>
-            <div className="char__basics">
-               
-            </div>
-            
-        </>
-    )
-}
-
 
 export default CharSearch;
