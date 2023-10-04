@@ -27,7 +27,7 @@ const MainPage = () => {
                 </ErrorBoundary>
                <ErrorBoundary>
                     <CharSearch/>
-               </ErrorBoundary>
+               </ErrorBoundary> 
 
             </div>
             <img className="bg-decoration" src={decoration} alt="vision" />

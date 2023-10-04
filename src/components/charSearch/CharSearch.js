@@ -27,12 +27,16 @@ const CharSearch = (props) => {
             }
         >
             <Form className="search-pan" action="">
+                <label htmlFor="name">Or find a character by name:</label>
+            
                 <Field
+                    placeholder="Enter name"
                     id="name"
                     name="name"
                     type="text"
                 />
                 <ErrorMessage className="error" name="name" component="div" />
+                <button className="button__main" type="submit">Find</button>
             </Form>
         </Formik>
     )

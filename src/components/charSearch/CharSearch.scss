@@ -1,6 +1,8 @@
-.search-pan{
+.search-pan {
     margin-top: 40px;
     padding: 25px;
+    height: 176px;
+    width: 425px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
     position: sticky;
     top: 10px;
@@ -9,21 +11,41 @@
 }
 
 input {
-    width: 100%;
-    height: 50px;
+    width: 250px;
+    height: 38px;
     margin-top: 15px;
     padding: 5px 15px;
     background: #fff;
-    border: 1px solid #e2e2e2;
-    color: #353535;
-    border-radius: 10px;
-    font-size: 22px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    //color: #353535;
+    //border-radius: 10px;
+    font-family: Roboto Condensed;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     &:focus {
-        outline: 1px solid #f57507;
+        outline: 1px solid #0b07f5;
     }
 }
 
 .error {
-    color: #e53e3e;
-    margin-top: 8px;
+    margin-top: 25px;
+    color: #9f0013;
+    font-family: Roboto Condensed;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+label {
+    display: block;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    // font-family: Roboto Condensed;
+    font-weight: 700;
 }
