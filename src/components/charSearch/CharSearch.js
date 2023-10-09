@@ -35,8 +35,10 @@ const CharSearch = (props) => {
                     name="name"
                     type="text"
                 />
-                <ErrorMessage className="error" name="name" component="div" />
-                <button className="button__main" type="submit">Find</button>
+                <button className="button button__main" type="submit">
+                    <div className="inner">FND</div>
+                </button>
+                <ErrorMessage className="error fnd" name="name" component="div" />
             </Form>
         </Formik>
     )

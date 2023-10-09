@@ -22,14 +22,17 @@ const MainPage = () => {
                 <ErrorBoundary>
                     <CharList currCharId={currCharId} />
                 </ErrorBoundary>
-                <ErrorBoundary>
-                    <CharInfo currChar={currentChar} />
-                </ErrorBoundary>
-               <ErrorBoundary>
-                    <CharSearch/>
-               </ErrorBoundary> 
+                <div>
+                    <ErrorBoundary>
+                        <CharInfo currChar={currentChar} />
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <CharSearch />
+                    </ErrorBoundary>
+                </div>
 
             </div>
+
             <img className="bg-decoration" src={decoration} alt="vision" />
         </>
     )
