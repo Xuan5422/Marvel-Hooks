@@ -44,20 +44,26 @@ const CharInfo = (props) => {
     const content = !(loading || error || !char) ? <View char={char} /> : null;
 
     return (
-        <TransitionGroup component={null}>
-            <CSSTransition
-                key={char?.name}
-                timeout={500}
-                classNames="char__info"
-            >
-                <div className="char__info">
-                    {skeleton}
-                    {errorMessage}
-                    {spinner}
-                    {content}
-                </div>
-            </CSSTransition>
-        </TransitionGroup>
+        <>
+            <TransitionGroup component={null}>
+                <CSSTransition
+                    key={char?.name}
+                    timeout={500}
+                    classNames="char__info"
+                >
+                    <div className="char__info">
+                        {content}
+                        {skeleton}
+                        {errorMessage}
+                        {spinner}
+                    </div>
+                </CSSTransition>
+            </TransitionGroup>
+
+        </>
+
+
+
     )
 }
 

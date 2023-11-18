@@ -22,7 +22,7 @@ const MainPage = () => {
                 <ErrorBoundary>
                     <CharList currCharId={currCharId} />
                 </ErrorBoundary>
-                <div>
+                <div className="char__block">
                     <ErrorBoundary>
                         <CharInfo currChar={currentChar} />
                     </ErrorBoundary>
