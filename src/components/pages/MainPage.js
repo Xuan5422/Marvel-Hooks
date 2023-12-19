@@ -24,11 +24,12 @@ const MainPage = () => {
                 </ErrorBoundary>
                 <div className="char__block">
                     <ErrorBoundary>
-                        <CharInfo currChar={currentChar} />
-                    </ErrorBoundary>
-                    <ErrorBoundary>
                         <CharSearch />
                     </ErrorBoundary>
+                    <ErrorBoundary>
+                        <CharInfo currChar={currentChar} />
+                    </ErrorBoundary>
+
                 </div>
 
             </div>

@@ -1,14 +1,15 @@
 @import '../../style/variables.scss';
 
-.single-comic {
+.single-char {
     margin-top: 50px;
     display: grid;
     grid-template-columns: 370px 550px auto;
     column-gap: 20px;
+    //column-gap: 50px;
     align-items: start;
     &__img {
-     //   width: 293px;
-     //   height: 450px;
+       /*  width: 293px;
+        height: 450px; */
         width: 370px;
         height: 520px;
         object-fit: cover;

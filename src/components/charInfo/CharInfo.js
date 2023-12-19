@@ -56,6 +56,7 @@ const CharInfo = (props) => {
                         {skeleton}
                         {errorMessage}
                         {spinner}
+                        <div className="char__fild"></div>
                     </div>
                 </CSSTransition>
             </TransitionGroup>

@@ -21,7 +21,6 @@ const SingleComicPage = () => {
 
     const updateComic = () => {
         clearError();
-
         getComic(comicId)
             .then(resp => {
                 setComic(resp);
@@ -33,7 +32,7 @@ const SingleComicPage = () => {
     const errorMesage = error ? <ErrorMessage /> : null;
     const spiner = loading ? <Spiner /> : null;
     const content = !(loading || error) ? <View comic={comic} /> : null;
-    //console.log('Single***', comicId );
+
     return (
         <>
             {errorMesage}
@@ -47,7 +46,7 @@ const SingleComicPage = () => {
 export default SingleComicPage;
 
 const View = ({ comic }) => {
-    const { title, description, thumbnail, pageCount, language, price } = comic ;
+    const { title, description, thumbnail, pageCount, language, price } = comic;
 
     const descr = description ? description : "There is no description for this character."
 

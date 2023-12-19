@@ -29,8 +29,8 @@
         align-items: start;
     }
     &__block {
-      max-height: 70%;
-      position: sticky;
+        height: 100%;
+      
     }
     &__grid {
         display: grid;
