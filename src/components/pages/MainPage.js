@@ -7,6 +7,8 @@ import CharSearch from "../charSearch/CharSearch";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 import decoration from '../../resources/img/vision.png';
 
+import './MainPage.scss'
+
 const MainPage = () => {
     const [currentChar, setCurrentChar] = useState(null);
 
@@ -23,13 +25,15 @@ const MainPage = () => {
                     <CharList currCharId={currCharId} />
                 </ErrorBoundary>
                 <div className="char__block">
-                    <ErrorBoundary>
-                        <CharSearch />
-                    </ErrorBoundary>
-                    <ErrorBoundary>
-                        <CharInfo currChar={currentChar} />
-                    </ErrorBoundary>
-
+                    <div className="char__wrap">
+                        <ErrorBoundary>
+                            <CharSearch />
+                        </ErrorBoundary>
+                        <ErrorBoundary>
+                            <CharInfo currChar={currentChar} />
+                        </ErrorBoundary>
+                    </div>
+                    <div className="char__end"></div>
                 </div>
 
             </div>
